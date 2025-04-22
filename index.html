@@ -12,10 +12,15 @@
   Timothy E. Riedel
   triedel@utexas.edu
  
-  Authors in chronological order of contribution:
+  Authors in no significant order:
   Author 1: Timothy E. Riedel
-  Authors: Anais, Syed, Nivi, Shahan, Daisy, Jessica
-  
+  Author 2: Anais Rivera
+  Author 3: Daisy Moran
+  Author 4: Jessica Osaide
+  Author 5: Nivedita Hari
+  Author 6: Syed Akbar
+  Author 7: Shahan Mohammad
+
   References:
   http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
   http://www.html5rocks.com/en/tutorials/file/dndfiles/
@@ -24,15 +29,15 @@
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-  blah, blah, blah,
+Create an app that allows users to insert LAMP images and determine if results have amplified or not by determining whether the pixel is pink, orange, or yellow.
  
   Known Issues:
-  blah, blah, blah, blah
+  Not working right now
 -->
 
  <head>
   <meta charset="utf-8">
-  <title>Photo Transform</title>
+  <title>LAMP Diagnostic Test</title>
   <meta name="viewport" content="width=device-width, initial-scale=.7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -100,35 +105,18 @@
         
           drawImageIOSFix(context,img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
 
-          /*  +++++++++++++++ BEGIN IMAGE PROCESSING +++++++++++++++ */
-          /*  ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-          /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */
-          // Copies the image on to the second canvas.
-          context2.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, 600, 500);
-          // Retrives the image data from the second canvas, is what allows for editing of the images' pixels.
-          var imageData = context2.getImageData(0, 0, 600, 500);
-          var data = imageData.data;
-          // Loop removes red and green coloring and keeps blue coloring.
-          for (var i = 0; i < data.length; i += 4) {
-          data[i] = 0;     // Removes red coloring.
-          data[i + 1] = 0; // Removes green coloring.
-          }
-
-          // Replaces the second canvas with the blue image.
-          context2.putImageData(imageData, 0, 0);
-          // Logs "Blue image processed." on the console when the blue image shows on the second canvas.
-          console.log("Blue image processed.");
-          } // end of img.onload and added code for this portion.
+          /* PUT ANY CHANGES TO THE JAVASCRIPT HERE  */          
+                    } // end of img.onload and added code for this portion.
         
         img.src = reader.result;
       } //  end of reader.onload
+
       
       reader.readAsDataURL(file);
     } // end of the if statement checking that file is an image
     else
     {
-      // this is what happens if the orignial file selected is not an image file
+      // this is what happens if the original file selected is not an image file
       messageDisplayArea.innerHTML = "File not supported!"
     } // end of the else statement if file in NOT an image
   }); // end of the fileInput.addEventListener function
@@ -139,7 +127,7 @@
  <body>
   <div data-role="page">
     <div data-role="header">
-    <h1>Primary Colors</h1></div><!-- /header -->
+    <h1>LAMP Diagnostic</h1></div><!-- /header -->
     <div data-role="content">	
       <h2>Push button to take picture.</h2>
       <div>
@@ -147,32 +135,153 @@
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
       <div id="messageDisplayArea"></div>
-      
+
       <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
       <script> /* This script initiates the canvas and puts the text on the canvas "myCanvas" */
         var canvas = document.getElementById('myCanvas');
         var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
+        context.font = '20pt Arial’;
         context.fillStyle = "black";
-        context.fillText("Original image will go here", 10, 20);
-      </script>
-      <!-- This script initiates the second canvas that matches the style of the original canvas. -->
-      <canvas id="dataCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
-      <script>
-        // Retrieves the node in the DOM representing the <canvas> element for the second canvas.
-        var canvas2 = document.getElementById('dataCanvas');
-        // Specifies that 2D graphics will be used, getContext() is used to obtain the rendering context and its drawing functions.
-        var context2 = canvas2.getContext("2d");
-        // Displays "Blue image will go here" in blue, 20pt, Calibri font in the second canvas similarly to the original canvas.
-        context2.font = '20pt Calibri';
-        context2.fillStyle = "blue";
-        context2.fillText("Blue image will go here", 10, 20);
-       </script>
+        context.fillText("LAMP image will go here", 10, 20);
 
+function detectColor(r, g, b) {
+    	if (r >= 200 && g >= 100 && g <= 200 && b >= 150) return "Pink: No amplification";
+     	if (r >= 200 && g >= 100 && g <= 180 && b <= 100) return "Orange: Amplifying";
+if (r >= 200 && g >= 200 && b <= 100) return "Yellow: Amplified";
+return "Other color";
+}
+      
+
+</script>
+      
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
     </div><!-- /footer -->
   </div><!-- /page -->
  </body>
+</html>
+
+
+
+BELOW is the working draft, we can adjust the values for if/then to create the most optimal RGB presets.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Photo Transform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=.7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+
+  <script>
+    function detectColor(r, g, b) {
+      if (r >= 200 && g >= 50 && g <= 200 && b >= 125) return "Pink - No amplification";
+      if (r >= 200 && g >= 100 && g <= 180 && b <= 100) return "Orange - Amplifying";
+      if (r >= 200 && g >= 200 && b <= 100) return "Yellow - Amplified";
+      return "Other color";
+    }
+
+    window.onload = function () {
+      const canvas = document.getElementById('myCanvas');
+      const context = canvas.getContext("2d");
+
+      const canvas2 = document.getElementById('dataCanvas');
+      const context2 = canvas2.getContext("2d");
+
+      const fileInput = document.getElementById('fileInput');
+      const messageDisplayArea = document.getElementById('messageDisplayArea');
+
+      let imageLoaded = false;
+
+      context.font = “20pt Calibri”;
+      context.fillStyle = "black";
+      context.fillText("Original image will go here", 10, 20);
+
+      // Clear the second canvas
+      context2.clearRect(0, 0, canvas2.width, canvas2.height);
+
+      fileInput.addEventListener('change', function () {
+        const file = fileInput.files[0];
+        const imageType = /image.*/;
+
+        if (file && file.type.match(imageType)) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            messageDisplayArea.innerHTML = "You picked an image!";
+            const img = new Image();
+
+            img.onload = function () {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              context.drawImage(img, 0, 0, 600, 500);
+              imageLoaded = true;
+            };
+
+            img.src = reader.result;
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          messageDisplayArea.innerHTML = "File not supported!";
+        }
+      });
+
+      // Click handler for pixel selection
+      canvas.addEventListener("click", function (event) {
+        if (!imageLoaded) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = Math.floor(event.clientX - rect.left);
+        const y = Math.floor(event.clientY - rect.top);
+        const pixel = context.getImageData(x, y, 1, 1).data;
+        const [r, g, b, a] = pixel;
+
+        const label = detectColor(r, g, b);
+
+        // Show text output below upload
+        messageDisplayArea.innerHTML = `
+          <div><strong>Clicked Position:</strong> (${x}, ${y})</div>
+          <div><strong>RGB:</strong> R=${r}, G=${g}, B=${b}</div>
+          <div><strong>Detected Label:</strong> <span style="color: #aa0000">${label}</span></div>
+        `;
+
+        // Write result to second canvas
+        context2.clearRect(0, 0, canvas2.width, canvas2.height);
+        context2.font = '24pt Calibri';
+        context2.fillStyle = "#000088";
+        context2.fillText(`Detected: ${label}`, 20, 60);
+      });
+    };
+  </script>
+</head>
+
+<body>
+  <div data-role="page">
+    <div data-role="header">
+      <h1>Primary Colors</h1>
+    </div>
+
+    <div data-role="content">
+      <h2>Push button to take picture.</h2>
+      <div>
+        Press orange button to create or choose image file:
+        <input type="file" id="fileInput" style="background-color: #FF6600;">
+      </div>
+      <div id="messageDisplayArea" style="margin-top:10px; font-size: 16px;"></div>
+
+      <canvas id="myCanvas" width="600" height="500" style="border:1px solid #d3d3d3; margin-top:10px;"></canvas>
+
+      <canvas id="dataCanvas" width="600" height="500" style="border:1px solid #d3d3d3; margin-top:10px;"></canvas>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <p>DIY Diagnostics</p>
+    </div>
+  </div>
+</body>
 </html>
