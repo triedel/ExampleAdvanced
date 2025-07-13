@@ -28,7 +28,7 @@ http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
   
   Brief Description of Goal of Code:
-Create an app that allows users to insert LAMP images and determine if results have amplified or not by determining whether the pixel is pink, orange, or yellow.
+This app takes a picture with the device's camera and then displays color information when a user touches (or clicks) on the image.
  
   Known Issues:
   None as of now
@@ -50,13 +50,14 @@ Create an app that allows users to insert LAMP images and determine if results h
 
 <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 
- <p>Insert photo of a LAMP result behind a white backdrop with a good light source:</p>
+ <p>This app takes a picture with the device's camera and then displays color information when a user touches (or clicks) on the image.
+</p>
  
   <input type="file" id="fileInput" accept="image/*"><br><br>
 
   <canvas id="myCanvas" width="600" height="500"></canvas><br> <!-- creates canvas for user to input image --> 
 
-  <p id="messageDisplayArea">Upload an image and tap a color.</p> <!-- message above canvas -->
+  <p id="messageDisplayArea">Upload an image and tap an area to see the color.</p> <!-- message above canvas -->
 
   <script>
     /* This script below initiates the canvas and puts the text on the canvas "myCanvas" */
@@ -64,7 +65,7 @@ Create an app that allows users to insert LAMP images and determine if results h
     const ctx = canvas.getContext('2d');
     ctx.font = '20pt Calibri';
     ctx.fillStyle = "black";
-    ctx.fillText("LAMP image will go here", 10, 20);
+    ctx.fillText("Image will go here", 10, 20);
     const fileInput = document.getElementById('fileInput');
     const message = document.getElementById('messageDisplayArea');
     let loadedImage = null;
