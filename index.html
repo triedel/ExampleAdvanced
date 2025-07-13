@@ -45,12 +45,6 @@ This app takes a picture with the device's camera and then displays color inform
 
 
   <script>
-    /* This script below initiates the canvas and puts the text on the canvas "myCanvas" */
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-    ctx.font = '20pt Calibri';
-    ctx.fillStyle = "black";
-    ctx.fillText("Image will go here", 10, 20);
     const fileInput = document.getElementById('fileInput');
     const message = document.getElementById('messageDisplayArea');
     let loadedImage = null;
@@ -141,9 +135,18 @@ function rgbToHsv(r, g, b) {
         Press orange button to create or choose image file:
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
-	    
+   
       <canvas id="myCanvas" width="600" height="500"></canvas><br> <!-- creates canvas for user to input image --> 
 
+        <script>
+    		/* This script below initiates the canvas and puts the text on the canvas "myCanvas" */
+    		const canvas = document.getElementById('myCanvas');
+    		const ctx = canvas.getContext('2d');
+    		ctx.font = '20pt Calibri';
+    		ctx.fillStyle = "black";
+    		ctx.fillText("Image will go here", 10, 20);
+	</script>
+	    
     </div><!-- /content -->
 	
     <div data-role="footer" data-position="fixed">
