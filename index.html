@@ -42,7 +42,39 @@ This app takes a picture with the device's camera and then displays color inform
 	 <link rel="stylesheet" href="w3-colors-flat.css">
 
 </head> 
+	
+<body>
+  <div data-role="page">
+    <div data-role="header">
+         <h1>Color Interpretation Example App</h1></div>
+    </div> <!-- /header -->
+	
+    <div data-role="content">	
+      <h2>This app takes a picture with the device's camera and then displays color information when a user touches (or clicks) on the image.</h2>
+	    
+      <div>
+        Press orange button to create or choose image file:
+        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
+      </div>
+   
+      <canvas id="myCanvas" width="600" height="500"></canvas><br> <!-- creates canvas for user to input image --> 
 
+        <script>
+    		/* This script below initiates the canvas and puts the text on the canvas "myCanvas" */
+    		const canvas = document.getElementById('myCanvas');
+    		const ctx = canvas.getContext('2d');
+    		ctx.font = '20pt Calibri';
+    		ctx.fillStyle = "black";
+    		ctx.fillText("Image will go here", 10, 20);
+	</script>
+	    
+    </div><!-- /content -->
+	
+    <div data-role="footer" data-position="fixed">
+      <p>DIY Diagnostics</p>
+    </div><!-- /footer -->
+  </div> <!-- /page -->
+ </body>
 
   <script>
     const fileInput = document.getElementById('fileInput');
@@ -121,37 +153,5 @@ function rgbToHsv(r, g, b) {
 
 
 		
-	
-<body>
-  <div data-role="page">
-    <div data-role="header">
-         <h1>Color Interpretation Example App</h1></div>
-    </div> <!-- /header -->
-	
-    <div data-role="content">	
-      <h2>This app takes a picture with the device's camera and then displays color information when a user touches (or clicks) on the image.</h2>
-	    
-      <div>
-        Press orange button to create or choose image file:
-        <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
-      </div>
-   
-      <canvas id="myCanvas" width="600" height="500"></canvas><br> <!-- creates canvas for user to input image --> 
 
-        <script>
-    		/* This script below initiates the canvas and puts the text on the canvas "myCanvas" */
-    		const canvas = document.getElementById('myCanvas');
-    		const ctx = canvas.getContext('2d');
-    		ctx.font = '20pt Calibri';
-    		ctx.fillStyle = "black";
-    		ctx.fillText("Image will go here", 10, 20);
-	</script>
-	    
-    </div><!-- /content -->
-	
-    <div data-role="footer" data-position="fixed">
-      <p>DIY Diagnostics</p>
-    </div><!-- /footer -->
-  </div> <!-- /page -->
- </body>
 </html>
