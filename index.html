@@ -78,7 +78,6 @@ This app takes a picture with the device's camera and then displays color inform
 
   <script>
     const fileInput = document.getElementById('fileInput');
-    const message = document.getElementById('messageDisplayArea');
     let loadedImage = null;
 
 /* This converts the color from a RBG format to HSV format. This is done to improve the accuracy for colors as the RGB format can be very finicky when detecting intermediate colors. */
@@ -138,7 +137,6 @@ function rgbToHsv(r, g, b) {
         loadedImage.onload = function() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.drawImage(loadedImage, 0, 0, canvas.width, canvas.height);
-          message.innerText = "Image loaded. Tap anywhere to identify the color.";
         };
         loadedImage.src = evt.target.result;
       };
