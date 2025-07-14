@@ -12,20 +12,15 @@
   triedel@utexas.edu
  
   Authors in no particular order:
-  Author 1: Timothy E. Riedel
-  Author 2: Anais Rivera
-  Author 3: Daisy Moran
-  Author 4: Jessica Osaide
-  Author 5: Nivedita Hari
-  Author 6: Syed Akbar
-  Author 7: Shahan Mohammad
+  Authors: Timothy E. Riedel, Anais Rivera, Daisy Moran, Jessica Osaide, Nivedita Hari, Syed Akbar, Shahan Mohammad
 
   References:
-http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
+  http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
   http://www.html5rocks.com/en/tutorials/file/dndfiles/
   http://www.w3.org/TR/FileAPI/
   http://mobilehtml5.org/
   http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+  https://realfavicongenerator.net/your-favicon-is-ready
   
   Brief Description of Goal of Code:
 This app takes a picture with your device's camera and then displays color information when a user touches (or clicks) on the image.
@@ -117,10 +112,13 @@ function rgbToHsv(r, g, b) {
 
 // this function takes the HSV values of the pixel and uses if statements to categorize a color   
  function getColorName(h, s, v) {
-      if (s < 20 || v < 50) return "Unclear/Neutral"; // if the pixel clicked is not defined as orange, pink, or yellow, “Unclear/Neutral” will be displayed at the bottom of the page.
-      if (h >= 20 && h < 40) return "Orange (Amplifying)"; // if the pixel clicked is within the color range defined, at the bottom of the page, “Orange (Amplifying)” will display at the bottom of the page.
-      if (h >= 40 && h <= 65) return "Yellow (Amplified)"; // if the pixel clicked is within the color range defined, at the bottom of the page, “Yellow (Amplified)” will display at the bottom of the page.
-      if (h >= 300 && h <= 345) return "Pink (No amplification)"; // if the pixel clicked is within the color range defined, “Pink (No amplification)” will display at the bottom of the page.
+      if (s < 20 || v < 50) return "Unclear/Neutral"; 
+      if (h >= 15 && h < 45) return "Orange";
+      if (h >= 45 && h <= 75) return "Yellow"; 
+      if (h >= 75 && h <= 165) return "Green"; 
+      if (h >= 165 && h <= 255) return "Blue";
+      if (h >= 255 && h <= 345) return "Purple/Pink"; 
+      if (h >= 345 && h <= 360 || h >= 0 && h <= 15) return "Red"; 
       return "Other Color";
     }
     
