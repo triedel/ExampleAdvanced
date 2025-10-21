@@ -13,8 +13,6 @@
  
   Authors in no particular order:
   Authors: Timothy E. Riedel, Anais Rivera, Daisy Moran, Jessica Osaide, Nivedita Hari, Syed Akbar, Shahan Mohammad
-
-	Change here.
 	
   References:
   http://docs.webplatform.org/wiki/concepts/programming/drawing_images_onto_canvas#Loading_the_image_programmatically
@@ -55,7 +53,7 @@ This app takes a picture with your device's camera and then displays color infor
     </header>
 	
     <div class="w3-container">	
-      <h2>This app takes a picture with your device's camera and then displays color information when a user touches (or clicks) on the image.</h2>
+      <p>This app takes a picture with your device's camera and then displays color information when a user touches (or clicks) on the image.</p>
       
         Press the "choose file" button to create or choose image file:<br>
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
@@ -83,7 +81,7 @@ This app takes a picture with your device's camera and then displays color infor
     		const ctx = canvas.getContext('2d');
     		ctx.font = '20pt Calibri';
     		ctx.fillStyle = "black";
-    		ctx.fillText("Image will go here", 10, 20);
+    		ctx.fillText("Image will go here after file button is pushed (above)", 10, 20);
 		ctx.strokeRect(0, 0, canvas.width, canvas.height);
 	  
    	 const message = document.getElementById('messageDisplayArea');
